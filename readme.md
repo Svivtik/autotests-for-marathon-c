@@ -47,14 +47,14 @@ This tester checks Task 00 - Task 08. Task 00 (mx_is_positive) requires Helper f
 
 ```bash
 clang -std=c11 -Wall -Wextra -Werror -Wpedantic \
-tester_s02.c\
+tester_s02.c \
 t00/mx_is_positive.c t00/mx_printstr.c t00/mx_strlen.c \
 t01/mx_isalpha.c \
 t02/mx_isdigit.c \
 t03/mx_isspace.c \
-t04/mx_islower.c\
+t04/mx_islower.c \
 t05/mx_isupper.c \
-t06/mx_tolower.c\
+t06/mx_tolower.c \
 t07/mx_toupper.c \
 t08/mx_printint.c t08/mx_printchar.c \
 -o tester_02
@@ -76,7 +76,7 @@ Make sure the file paths are correct (some tasks use files from previous tasks, 
 
 ```bash
 clang -std=c11 -Wall -Wextra -Werror -Wpedantic \
-tester_s03.c\
+tester_s03.c \
 t00/mx_deref_pointer.c \
 t01/mx_ref_pointer.c \
 t02/mx_reverse_case.c t02/mx_tolower.c t02/mx_toupper.c t02/mx_islower.c t02/mx_isupper.c \
