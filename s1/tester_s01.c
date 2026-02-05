@@ -4,51 +4,51 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-// Цвета
+// Colors
 #define RED "\033[0;31m"
 #define GREEN "\033[0;32m"
 #define RESET "\033[0m"
 
-// Прототипы функций спринта 01
+// Prototypes
 void mx_say_wake_up(void);
 void mx_printchar(char c);
 void mx_print_alphabet(void);
 int mx_strlen(const char *s);
 void mx_printstr(const char *s);
 
-// Логика тестов
-void test_t01() {
+// Tests
+void test_t01(void) {
     printf("   [Visual Check] Expected: 'Wake up, NEO \\ (^_^)/ ...' then 'The Matrix has you ...'\n");
     mx_say_wake_up();
     exit(0);
 }
 
-void test_t02() {
+void test_t02(void) {
     printf("   [Visual Check] Expected: 'G'\n");
     mx_printchar('G');
     printf("\n");
     exit(0);
 }
 
-void test_t03() {
+void test_t03(void) {
     printf("   [Visual Check] Expected: AbCdEfGhIjKlMnOpQrStUvWxYz\n");
     mx_print_alphabet();
     exit(0);
 }
 
-void test_t04() {
+void test_t04(void) {
     if (mx_strlen("Hello") == 5 && mx_strlen("") == 0 && mx_strlen("123") == 3) exit(0);
     else exit(1);
 }
 
-void test_t05() {
+void test_t05(void) {
     printf("   [Visual Check] Expected: 'Knock, knock, Neo.'\n");
     mx_printstr("Knock, knock, Neo.");
     printf("\n");
     exit(0);
 }
 
-// Функция запуска тестов (fork)
+// Launching functoin (fork)
 void run_test(void (*func)(), const char *task_name) {
     printf("Running %s... \n", task_name);
     fflush(stdout);
@@ -67,7 +67,7 @@ void run_test(void (*func)(), const char *task_name) {
     }
 }
 
-int main() {
+int main(void) {
     printf("=== SPRINT 01 TESTER (Tasks 01-05) ===\n\n");
     run_test(test_t01, "Task 01 (Say Wake Up)");
     run_test(test_t02, "Task 02 (Print Char)");

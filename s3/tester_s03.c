@@ -6,7 +6,7 @@
 #include <stdbool.h>
 
 // ==========================================
-// Цвета для красивого вывода
+// Colors for nice output
 // ==========================================
 #define RED "\033[0;31m"
 #define GREEN "\033[0;32m"
@@ -14,7 +14,7 @@
 #define RESET "\033[0m"
 
 // ==========================================
-// Прототипы функций спринта (из заданий)
+// Prototypes of sprint functions (from tasks)
 // ==========================================
 void mx_deref_pointer(char ******str);
 void mx_ref_pointer(int i, int ******ptr);
@@ -26,14 +26,14 @@ char *mx_strcpy(char *dst, const char *src);
 void mx_str_separate(const char *str, char delim);
 double mx_pow(double n, unsigned int pow);
 
-// Вспомогательная функция для Task 07 (нужна для проверки вывода, но тут мы просто запустим)
+// Auxiliary function for Task 07 (needed to check output, but here we just run it)
 // ==========================================
 
 // ==========================================
-// ЛОГИКА ТЕСТОВ
+// LOGIC OF TESTS
 // ==========================================
 
-void test_t00() {
+void test_t00(void) {
     char *p1;
     char **p2 = &p1;
     char ***p3 = &p2;
@@ -50,7 +50,7 @@ void test_t00() {
     }
 }
 
-void test_t01() {
+void test_t01(void) {
     int val;
     int *p1 = &val;
     int **p2 = &p1;
@@ -65,14 +65,14 @@ void test_t01() {
     else exit(1);
 }
 
-void test_t02() {
+void test_t02(void) {
     char str[] = "HeLLo Neo";
     mx_reverse_case(str);
     if (strcmp(str, "hEllO nEO") == 0) exit(0);
     else exit(1);
 }
 
-void test_t03() {
+void test_t03(void) {
     char s[] = "ONE";
     mx_swap_char(&s[0], &s[1]); // "NOE"
     if (strcmp(s, "NOE") != 0) exit(1);
@@ -81,21 +81,21 @@ void test_t03() {
     exit(0);
 }
 
-void test_t04() {
+void test_t04(void) {
     char str[] = "game over";
     mx_str_reverse(str);
     if (strcmp(str, "revo emag") == 0) exit(0);
     else exit(1);
 }
 
-void test_t05() {
+void test_t05(void) {
     if (mx_strcmp("abc", "abc") == 0 &&
         mx_strcmp("abc", "abd") < 0 &&
         mx_strcmp("abd", "abc") > 0) exit(0);
     else exit(1);
 }
 
-void test_t06() {
+void test_t06(void) {
     char src[] = "CopyMe";
     char dst[20];
     mx_strcpy(dst, src);
@@ -103,7 +103,7 @@ void test_t06() {
     else exit(1);
 }
 
-void test_t07() {
+void test_t07(void) {
     printf(YELLOW "\n   [Check output manually below] expected: 'game' then 'over'\n" RESET);
     printf("   --- START OUTPUT ---\n");
     mx_str_separate("game over", ' ');
@@ -111,33 +111,32 @@ void test_t07() {
     exit(0);
 }
 
-void test_t08() {
+void test_t08(void) {
     if (mx_pow(2, 3) == 8 && mx_pow(2.5, 2) == 6.25 && mx_pow(5, 0) == 1) exit(0);
     else exit(1);
 }
 
 // ==========================================
-// ФУНКЦИЯ-РАННЕР (ИЗОЛЯЦИЯ ПРОЦЕССОВ)
+// Test runner function (process isolation with fork)
 // ==========================================
-void run_test(void (*func)(), const char *task_name) {
+void run_test(void (*func)(void), const char *task_name) {
     printf("Running %s... ", task_name);
     fflush(stdout);
 
     pid_t pid = fork();
 
     if (pid == 0) {
-        // Дочерний процесс
-        // Закрываем stderr, чтобы ошибки не мусорили в консоль, если не хотим их видеть
-        // (можно закомментировать строку ниже, если нужна отладка)
+        // Child process
+        // Close stderr to prevent errors from dumping into the console if you don't want to see them
+        // (You can comment out the line below if you need debugging)
         // freopen("/dev/null", "w", stderr); 
         
-        func(); // Запуск теста
-        exit(0); // Если функция не упала и тесты прошли
+        func(); // Run the test function
+        exit(0); // If function doesn't crash and tests pass
     } else if (pid > 0) {
-        // Родительский процесс
+        // Parent process
         int status;
-        wait(&status); // Ждем завершения ребенка
-
+        wait(&status); // Wait for child to finish
         if (WIFEXITED(status)) {
             int exit_code = WEXITSTATUS(status);
             if (exit_code == 0) {
@@ -146,7 +145,7 @@ void run_test(void (*func)(), const char *task_name) {
                 printf(RED "[FAIL]" RESET " (Wrong Answer)\n");
             }
         } else if (WIFSIGNALED(status)) {
-            // Если процесс был убит сигналом (например, Segfault)
+            // If the child process was terminated by a signal (e.g., segmentation fault)
             printf(RED "[CRASH]" RESET " (Segmentation Fault or Bus Error)\n");
         }
     } else {
@@ -157,7 +156,7 @@ void run_test(void (*func)(), const char *task_name) {
 // ==========================================
 // MAIN
 // ==========================================
-int main() {
+int main(void) {
     printf("=== SPRINT 03 MASTER TESTER ===\n\n");
 
     run_test(test_t00, "Task 00 (Deref Pointer) ");

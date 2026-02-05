@@ -9,7 +9,7 @@
 #define GREEN "\033[0;32m"
 #define RESET "\033[0m"
 
-// Прототипы
+// Prototypes
 void mx_is_positive(int i);
 bool mx_isalpha(int c);
 bool mx_isdigit(int c);
@@ -20,7 +20,7 @@ int mx_tolower(int c);
 int mx_toupper(int c);
 void mx_printint(int n);
 
-void test_t00() {
+void test_t00(void) {
     printf("   [Check] 5 -> positive, -5 -> negative, 0 -> zero\n");
     mx_is_positive(5);
     mx_is_positive(-5);
@@ -28,15 +28,15 @@ void test_t00() {
     exit(0);
 }
 
-void test_t01() { if(mx_isalpha('A') && mx_isalpha('z') && !mx_isalpha('1')) exit(0); else exit(1); }
-void test_t02() { if(mx_isdigit('0') && mx_isdigit('9') && !mx_isdigit('a')) exit(0); else exit(1); }
-void test_t03() { if(mx_isspace(' ') && mx_isspace('\t') && !mx_isspace('A')) exit(0); else exit(1); }
-void test_t04() { if(mx_islower('z') && !mx_islower('Z') && !mx_islower('3')) exit(0); else exit(1); }
-void test_t05() { if(mx_isupper('Z') && !mx_isupper('z') && !mx_isupper('!')) exit(0); else exit(1); }
-void test_t06() { if(mx_tolower('Z') == 'z' && mx_tolower('a') == 'a') exit(0); else exit(1); }
-void test_t07() { if(mx_toupper('z') == 'Z' && mx_toupper('A') == 'A') exit(0); else exit(1); }
+void test_t01(void) { if(mx_isalpha('A') && mx_isalpha('z') && !mx_isalpha('1')) exit(0); else exit(1); }
+void test_t02(void) { if(mx_isdigit('0') && mx_isdigit('9') && !mx_isdigit('a')) exit(0); else exit(1); }
+void test_t03(void) { if(mx_isspace(' ') && mx_isspace('\t') && !mx_isspace('A')) exit(0); else exit(1); }
+void test_t04(void) { if(mx_islower('z') && !mx_islower('Z') && !mx_islower('3')) exit(0); else exit(1); }
+void test_t05(void) { if(mx_isupper('Z') && !mx_isupper('z') && !mx_isupper('!')) exit(0); else exit(1); }
+void test_t06(void) { if(mx_tolower('Z') == 'z' && mx_tolower('a') == 'a') exit(0); else exit(1); }
+void test_t07(void) { if(mx_toupper('z') == 'Z' && mx_toupper('A') == 'A') exit(0); else exit(1); }
 
-void test_t08() {
+void test_t08(void) {
     printf("   [Check] Expected: 25, -2147483648, 0\n");
     mx_printint(25); printf("\n");
     mx_printint(-2147483648); printf("\n");
@@ -49,7 +49,7 @@ void run_test(void (*func)(), const char *name) {
     fflush(stdout);
     pid_t pid = fork();
     if(pid == 0) {
-        // Для визуальных тестов добавляем перевод строки
+        // For visual tests, we add a line break
         if(name[6] == '0' || name[6] == '8') printf("\n"); 
         func(); exit(0);
     } else {
@@ -60,7 +60,7 @@ void run_test(void (*func)(), const char *name) {
     }
 }
 
-int main() {
+int main(void) {
     printf("=== SPRINT 02 TESTER ===\n");
     run_test(test_t00, "Task 00 (Is Positive)");
     run_test(test_t01, "Task 01 (Is Alpha)");
