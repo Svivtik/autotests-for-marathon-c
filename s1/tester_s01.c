@@ -49,7 +49,7 @@ void test_t05(void) {
 }
 
 // Launching functoin (fork)
-void run_test(void (*func)(), const char *task_name) {
+void run_test(void (*func)(void), const char *task_name) {
     printf("Running %s... \n", task_name);
     fflush(stdout);
     pid_t pid = fork();

@@ -44,7 +44,7 @@ void test_t08(void) {
     exit(0);
 }
 
-void run_test(void (*func)(), const char *name) {
+void run_test(void (*func)(void), const char *name) {
     printf("Running %s... ", name);
     fflush(stdout);
     pid_t pid = fork();
