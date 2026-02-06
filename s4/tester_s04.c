@@ -31,7 +31,7 @@ int mx_count_substr(const char *str, const char *sub);
 // ТЕСТЫ
 // ==========================================
 
-void test_t00() {
+void test_t00(void) {
     int arr[] = {1, 2, 3, 4, 5};
     printf(YELLOW "\n   [Visual Check] Expected:\n   1\n   2\n   3\n   4\n   5\n" RESET);
     printf("   --- OUTPUT START ---\n");
@@ -40,14 +40,14 @@ void test_t00() {
     exit(0);
 }
 
-void test_t01() {
+void test_t01(void) {
     if (mx_sqrt(4) == 2 && mx_sqrt(3) == 0 && mx_sqrt(16) == 4 && mx_sqrt(2147395600) == 46340) 
         exit(0);
     else 
         exit(1);
 }
 
-void test_t02() {
+void test_t02(void) {
     const char *str = "Game Over";
     if (mx_strchr(str, 'm') == &str[2] && mx_strchr(str, 'Z') == NULL && mx_strchr(str, '\0') == &str[9]) 
         exit(0);
@@ -55,7 +55,7 @@ void test_t02() {
         exit(1);
 }
 
-void test_t03() {
+void test_t03(void) {
     char dst[20];
     char src[] = "Hello";
     
@@ -70,7 +70,7 @@ void test_t03() {
     exit(1);
 }
 
-void test_t04() {
+void test_t04(void) {
     char s1[20] = "Hello";
     const char *s2 = " World";
     mx_strcat(s1, s2);
@@ -78,7 +78,7 @@ void test_t04() {
     else exit(1);
 }
 
-void test_t05() {
+void test_t05(void) {
     int arr[] = {3, 55, 11, 1, 0, 4, 22};
     int sorted[] = {0, 1, 3, 4, 11, 22, 55};
     mx_sort_arr_int(arr, 7);
@@ -89,7 +89,7 @@ void test_t05() {
     exit(0);
 }
 
-void test_t06() {
+void test_t06(void) {
     if (mx_atoi("   -123") == -123 && 
         mx_atoi("   +007") == 7 && 
         mx_atoi("100junk") == 100 &&
@@ -99,13 +99,13 @@ void test_t06() {
         exit(1);
 }
 
-void test_t07() {
+void test_t07(void) {
     const char *s = "  follow  * the  white rabbit ";
     if (mx_count_words(s, '*') == 2 && mx_count_words(s, ' ') == 5) exit(0);
     else exit(1);
 }
 
-void test_t08() {
+void test_t08(void) {
     int arr1[] = {2, 2, 4, 4};
     int arr2[] = {5, 5, 5, 1, 2};
     // Task says: "Returns the first number found if there is more than one most common"
@@ -114,7 +114,7 @@ void test_t08() {
     else exit(1);
 }
 
-void test_t09() {
+void test_t09(void) {
     if (mx_strncmp("abc", "abd", 2) == 0 && 
         mx_strncmp("abc", "abd", 3) < 0 && 
         mx_strncmp("abd", "abc", 3) > 0) 
@@ -123,7 +123,7 @@ void test_t09() {
         exit(1);
 }
 
-void test_t10() {
+void test_t10(void) {
     const char *haystack = "Hello Neo";
     if (mx_strstr(haystack, "Neo") == &haystack[6] && 
         mx_strstr(haystack, "Morpheus") == NULL) 
@@ -132,7 +132,7 @@ void test_t10() {
         exit(1);
 }
 
-void test_t11() {
+void test_t11(void) {
     const char *s = "yo, yo, yo Neo";
     if (mx_count_substr(s, "yo") == 3 && mx_count_substr(s, "Neo") == 1) exit(0);
     else exit(1);
@@ -141,7 +141,7 @@ void test_t11() {
 // ==========================================
 // ФУНКЦИЯ ЗАПУСКА (Fork Wrapper)
 // ==========================================
-void run_test(void (*func)(), const char *task_name) {
+void run_test(void (*func)(void), const char *task_name) {
     printf("Running %s... ", task_name);
     fflush(stdout);
 
@@ -171,7 +171,7 @@ void run_test(void (*func)(), const char *task_name) {
     }
 }
 
-int main() {
+int main(void) {
     printf("=== SPRINT 04 MASTER TESTER ===\n\n");
 
     run_test(test_t00, "Task 00 (Print Array)   ");
