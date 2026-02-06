@@ -93,6 +93,31 @@ t08/mx_pow.c \
 
 ./tester_03
 
+---
+
+## 🏃 Sprint 04 Compilation command
+
+```bash
+clang -std=c11 -Wall -Wextra -Werror -Wpedantic \
+tester_s04.c \
+t00/mx_print_arr_int.c t00/mx_printint.c t00/mx_printchar.c \
+t01/mx_sqrt.c \
+t02/mx_strchr.c \
+t03/mx_strncpy.c \
+t04/mx_strcat.c t04/mx_strlen.c \
+t05/mx_sort_arr_int.c \
+t06/mx_atoi.c t06/mx_isdigit.c t06/mx_isspace.c \
+t07/mx_count_words.c \
+t08/mx_popular_int.c \
+t09/mx_strncmp.c \
+t10/mx_strstr.c \
+t11/mx_count_substr.c \
+-o tester_04
+```
+
+### Launch
+
+./tester_04
 
 ---
 Версия на русском языке:
