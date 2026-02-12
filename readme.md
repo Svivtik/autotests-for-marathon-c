@@ -120,6 +120,39 @@ t11/mx_count_substr.c \
 ./tester_04
 
 ---
+
+## 🏃 Sprint 05 Compilation commands
+
+# Task 00
+```bash
+clang -std=c11 -Wall -Wextra -Werror -Wpedantic -o t00/mx_print_name \
+t00/mx_print_name.c t00/mx_printstr.c t00/mx_printchar.c t00/mx_printint.c t00/mx_strlen.c
+```
+
+# Task 01
+```bash
+clang -std=c11 -Wall -Wextra -Werror -Wpedantic -o t01/mx_print_args \
+t01/mx_print_args.c t01/mx_printstr.c t01/mx_printchar.c t01/mx_strlen.c
+```
+
+# Task 02
+```bash
+clang -std=c11 -Wall -Wextra -Werror -Wpedantic -o t02/mx_sum_args \
+t02/mx_sum_args.c t02/mx_atoi.c t02/mx_isdigit.c t02/mx_isspace.c t02/mx_printint.c t02/mx_printchar.c
+```
+
+```bash
+clang -std=c11 -Wall -Wextra -Werror -Wpedantic \
+tester_s05.c \
+t03/mx_factorial_iter.c \
+t04/mx_factorial_rec.c \
+-o tester_05
+```
+
+```bash
+./tester_05
+```
+---
 Версия на русском языке:
 
 # Ucode C Marathon: Auto-Testers Guide
